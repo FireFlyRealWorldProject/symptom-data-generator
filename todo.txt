@@ -1,15 +1,15 @@
-(A) Add reading in the symptoms and IDs from the files
-(A) Add reading methods of reporting from files
 (A) Add reading locations from files
+(A) Add reading methods of reporting from files
 (A) Add the implimentation for the for loop actually generating the JSON patiant profiles +RWPSymptomGenerator
-(B) Add the JSON structure +RWPSymptomGenerator
 (B) Add the Anthrax Symptoms +RWPSymptomGenerator
+(B) Add the JSON structure +RWPSymptomGenerator
 (B) Add the other symptoms +RWPSymptomGenerator
 (B) Add the patiant IDs +RWPSymptomGenerator
-Impliment script in Python +RWPSymptomGenerator
 (C) Impliment ability to specify how many patiants to generate. +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
-Make sure that this generates data compatible with Oliver's patiant data
+Impliment script in Python +RWPSymptomGenerator
 Make sure that this CAN generate data compatible with Abena's symptom ranking system
+Make sure that this generates data compatible with Oliver's patiant data
 Make the amount of symptoms the script can read in dynamic
+x 2016-02-26 (A) Add reading in the symptoms and IDs from the files
