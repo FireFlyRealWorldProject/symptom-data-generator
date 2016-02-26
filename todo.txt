@@ -10,3 +10,4 @@ Impliment script in Python +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
 Make sure that this generates data compatible with Oliver's patiant data
 Make sure that this CAN generate data compatible with Abena's symptom ranking system
+Make the amount of symptoms the script can read in dynamic
