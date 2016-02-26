@@ -7,9 +7,5 @@ Impliment script in Python +RWPSymptomGenerator
 (C) Impliment ability to specify how many patiants to generate. +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
-
-
-
-
-
-
+Make sure that this generates data compatible with Oliver's patiant data
+Make sure that this CAN generate data compatible with Abena's symptom ranking system
