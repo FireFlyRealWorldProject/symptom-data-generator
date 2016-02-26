@@ -9,7 +9,8 @@
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
 Impliment script in Python +RWPSymptomGenerator
-Make sure that this CAN generate data compatible with Abena's symptom ranking system
-Make sure that this generates data compatible with Oliver's patiant data
-Make the amount of symptoms the script can read in dynamic
+Make sure that this CAN generate data compatible with Abena's symptom ranking system +RWPSymptomGenerator
+Make sure that this generates data compatible with Oliver's patiant data +RWPSymptomGenerator
+Make the amount of symptoms the script can read in dynamic +RWPSymptomGenerator
+Put file reading methods into their own function. +RWPSymptomGenerator
 x 2016-02-26 (A) Add reading in the symptoms and IDs from the files
