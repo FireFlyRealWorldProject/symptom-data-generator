@@ -1,11 +1,4 @@
 (A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
-(B) 2016-02-27 Add test IDs
-(B) 2016-02-27 Add the reporting methods +RWPSymptomGenerator 
-(B) Add the Anthrax Symptoms +RWPSymptomGenerator
-(B) Add the JSON structure +RWPSymptomGenerator
-(B) Add the other symptoms +RWPSymptomGenerator
-(B) Add the patiant IDs +RWPSymptomGenerator
-(C) Impliment ability to specify how many patiants to generate. +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
 Impliment script in Python +RWPSymptomGenerator
@@ -13,7 +6,6 @@ Make sure that this CAN generate data compatible with Abena's symptom ranking sy
 Make sure that this generates data compatible with Oliver's patiant data +RWPSymptomGenerator
 Make the amount of symptoms the script can read in dynamic +RWPSymptomGenerator
 Put file reading methods into their own function. +RWPSymptomGenerator
-Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
 x 2016-02-26 (A) Add reading in the symptoms and IDs from the files
 x 2016-02-26 (A) Add reading locations from files
 x 2016-02-26 (A) Add reading methods of reporting from files
@@ -22,3 +14,11 @@ x 2016-02-27 (A) Add the implimentation for the for loop actually generating the
 x 2016-02-27 (A) Make sure that we sometimes pick no fake symptoms +RWPSymptomGenerator
 x 2016-02-27 (A) Remove using two seperate files for real Anthrax symptoms and fake ones, we can use one file and ranges. +RWPSymptomGenerator
 x 2016-02-27 (A) Write finished JSON +RWPSymptomGenerator
+x 2016-02-27 (B) 2016-02-27 Add test IDs
+x 2016-02-27 (B) 2016-02-27 Add the reporting methods +RWPSymptomGenerator
+x 2016-02-27 (B) Add the Anthrax Symptoms +RWPSymptomGenerator
+x 2016-02-27 (B) Add the JSON structure +RWPSymptomGenerator
+x 2016-02-27 (B) Add the other symptoms +RWPSymptomGenerator
+x 2016-02-27 (B) Add the patiant IDs +RWPSymptomGenerator
+x 2016-02-27 (C) Impliment ability to specify how many patiants to generate. +RWPSymptomGenerator
+x 2016-02-27 Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator

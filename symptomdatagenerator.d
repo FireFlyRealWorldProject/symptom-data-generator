@@ -32,7 +32,7 @@ void main(string[] args)
 
 
 
-    if (args.length >= 9)       //Open the files
+    if (args.length >= 11)       //Open the files
     {
         JSON = File(args[1], "r");
         ids = File(args[2], "r");
@@ -42,13 +42,14 @@ void main(string[] args)
         fakestart =  to!int(args[6]);
         fakeend =  to!int(args[7]);
         ReportMethods =  File(args[8], "r");
-        LocationPairs = File(args[8], "r");
+        LocationPairs = File(args[9], "r");
+
     }
     else if (args.length == 2)
     {
         if (args[1] == "help")
         {
-            writeln( "JSONFile idsfile symptomsfile [startOfRealSymptoms] [EndOfRealSymptoms] [StartOfFakeSymptoms] [EndOfFakeSymptoms] reportmethods locationpairs");
+            writeln( "JSONFile idsfile symptomsfile [startOfRealSymptoms] [EndOfRealSymptoms] [StartOfFakeSymptoms] [EndOfFakeSymptoms] reportmethods locationpairs [numberOfPatiants]");
             return;
         }
 
@@ -58,7 +59,7 @@ void main(string[] args)
         return ;
     }
 
-    string JSONStructureString = strip(JSON.readln());       //Read in the JSON structure from file
+    string JSONStructureString = "{    \"patiant_id\": \"\", \"report_method\":\"\", \"report_latitude\": \"\",\"report_longitude\": \"\",\"Symptoms\":[] }";       //Read in the JSON structure from file
     string JSONStructureFields[10];
 
     int lineCount = 1;
@@ -69,14 +70,17 @@ void main(string[] args)
     }
 
 
+
+    //JSONValue j = parseJSON(JSONStructureString);     //Parse the JSON
+    JSONValue j = parseJSON(JSONStructureString);
+    writefln("Doing %s Patiants", args[]);
+
     writeln("Using JSON structure: \n");
-    writeln(JSONStructureString);
-
-    JSONValue j = parseJSON(JSONStructureString);     //Parse the JSON
-
-    writefln("Doing %s Patiants", args[5]);
+    writeln(j.toString);
 
     JSONValue patiants[];    //List of patiants
+
+    patiants.length = to!int(args[10]);
 
 
     //Read in all the anthrax symptoms
@@ -133,27 +137,42 @@ void main(string[] args)
 
 
     int i = 0;
+    writeln(patiants.length);
     while (!ids.eof())  //For every ID
     {
+        if (i >= patiants.length)   //Check because EOF doesnt happen until i is already out of range
+        { break; }
+
+        writeln(i);
         patiants[i] = parseJSON(JSONStructureString); //New patiant
         patiants[i].object["patiant_id"] = JSONValue(ids.readln());
         patiants[i].object["report_method"] = JSONValue(ReportMethodsList[uniform(0,ReportMethodsList.length)]);   //Get random report method
         patiants[i].object["report_latitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
         patiants[i].object["report_longitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
 
+    writeln("Hi");
+
         string RealSymptoms[];
         RealSymptoms.length = RealSymptomLim;
-        for (int k = 0; i < uniform(RealSymptomStart, uniform(0,RealSymptomLim));i++)   //Get real symptoms 0 to max. Will sometimes pick 0
+
+
+        int noRealSimps = uniform(0, RealSymptomLim);
+        int noFakeSimps = uniform(0, OtherSymptomLim);
+    writeln("Hi");
+
+        for (int k = 0; k < noRealSimps;k++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
             patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
 
         string FakeSymptoms[];
         FakeSymptoms.length = symptomsList.length;
-        for (int k = 0; i < uniform(OtherSymptomStart, uniform(0,OtherSymptomLim));i++)
+        for (int k = 0; k < noFakeSimps;k++)
         {
             patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
+    writeln("Hi");
+
         i++;
     }
 
