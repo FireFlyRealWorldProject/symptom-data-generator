@@ -134,14 +134,14 @@ void main(string[] args)
 
         string RealSymptoms[];
         RealSymptoms.length = RealSymptomLim;
-        for (int k = 0; i < uniform(RealSymptomStart, uniform(0,RealSymptomLim));i++)
+        for (int k = 0; i < uniform(RealSymptomStart, uniform(0,RealSymptomLim));i++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
             patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
 
         string FakeSymptoms[];
         FakeSymptoms.length = symptomsList.length;
-        for (int k = 0; i < uniform(OtherSymptomStart, symptomsList.length);i++)
+        for (int k = 0; i < uniform(OtherSymptomStart, uniform(0,OtherSymptomLim);i++)
         {
             patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
