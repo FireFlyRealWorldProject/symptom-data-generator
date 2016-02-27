@@ -137,20 +137,16 @@ void main(string[] args)
 
 
     int i = 0;
-    writeln(patiants.length);
     while (!ids.eof())  //For every ID
     {
         if (i >= patiants.length)   //Check because EOF doesnt happen until i is already out of range
         { break; }
 
-        writeln(i);
         patiants[i] = parseJSON(JSONStructureString); //New patiant
         patiants[i].object["patiant_id"] = JSONValue(ids.readln());
         patiants[i].object["report_method"] = JSONValue(ReportMethodsList[uniform(0,ReportMethodsList.length)]);   //Get random report method
         patiants[i].object["report_latitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
         patiants[i].object["report_longitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
-
-    writeln("Hi");
 
         string RealSymptoms[];
         RealSymptoms.length = RealSymptomLim;
@@ -158,7 +154,6 @@ void main(string[] args)
 
         int noRealSimps = uniform(0, RealSymptomLim);
         int noFakeSimps = uniform(0, OtherSymptomLim);
-    writeln("Hi");
 
         for (int k = 0; k < noRealSimps;k++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
@@ -171,7 +166,6 @@ void main(string[] args)
         {
             patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
-    writeln("Hi");
 
         i++;
     }
