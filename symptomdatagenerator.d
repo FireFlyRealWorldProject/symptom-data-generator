@@ -32,7 +32,7 @@ void main(string[] args)
 
 
 
-    if (args.length >= 8)       //Open the files
+    if (args.length >= 9)       //Open the files
     {
         JSON = File(args[1], "r");
         ids = File(args[2], "r");
@@ -40,9 +40,9 @@ void main(string[] args)
         realstart = to!int(args[4]);
         realend = to!int(args[5]);
         fakestart =  to!int(args[6]);
-        fakeend =  to!int(args[6]);
-        ReportMethods =  File(args[5], "r");
-        LocationPairs = File(args[6], "r");
+        fakeend =  to!int(args[7]);
+        ReportMethods =  File(args[8], "r");
+        LocationPairs = File(args[8], "r");
     }
     else if (args.length == 2)
     {
