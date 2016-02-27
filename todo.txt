@@ -1,3 +1,4 @@
+(A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
 (A) Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
 (A) Remove using two seperate files for real Anthrax symptoms and fake ones, we can use one file and ranges. +RWPSymptomGenerator
 (A) Add command line arguments for how many real and fake symptoms there are.
