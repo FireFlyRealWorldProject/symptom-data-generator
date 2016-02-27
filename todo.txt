@@ -1,3 +1,5 @@
+(B) 2016-02-27 Add test IDs
+(B) 2016-02-27 Add the reporting methods +RWPSymptomGenerator 
 (B) Add the Anthrax Symptoms +RWPSymptomGenerator
 (B) Add the JSON structure +RWPSymptomGenerator
 (B) Add the other symptoms +RWPSymptomGenerator
