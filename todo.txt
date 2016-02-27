@@ -2,6 +2,7 @@
 (A) Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
 (A) Remove using two seperate files for real Anthrax symptoms and fake ones, we can use one file and ranges. +RWPSymptomGenerator
 (A) Add command line arguments for how many real and fake symptoms there are.
+(A) Write finished JSON +RWPSymptomGenerator
 (A) Add the implimentation for the for loop actually generating the JSON patiant profiles +RWPSymptomGenerator
 (B) Add the Anthrax Symptoms +RWPSymptomGenerator
 (B) Add the JSON structure +RWPSymptomGenerator
