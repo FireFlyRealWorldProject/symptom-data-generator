@@ -44,6 +44,15 @@ void main(string[] args)
         ReportMethods =  File(args[5], "r");
         LocationPairs = File(args[6], "r");
     }
+    else if (args.length == 2)
+    {
+        if (args[1] == "help")
+        {
+            writeln( "JSONFile idsfile symptomsfile [startOfRealSymptoms] [EndOfRealSymptoms] [StartOfFakeSymptoms] [EndOfFakeSymptoms] reportmethods locationpairs");
+            return;
+        }
+
+    }
     else
     {
         return ;
@@ -141,14 +150,19 @@ void main(string[] args)
 
         string FakeSymptoms[];
         FakeSymptoms.length = symptomsList.length;
-        for (int k = 0; i < uniform(OtherSymptomStart, uniform(0,OtherSymptomLim);i++)
+        for (int k = 0; i < uniform(OtherSymptomStart, uniform(0,OtherSymptomLim));i++)
         {
             patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
-
-
         i++;
     }
+
+
+    foreach(int p, JSONValue patiant; patiants)
+    {
+        append("Patiants.json", patiant.toString());
+    }
+
         
 
 
