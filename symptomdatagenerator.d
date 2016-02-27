@@ -19,8 +19,7 @@ void main(string[] args)
 
     File JSON;
     File ids;
-    File Asymptoms;
-    File Osymptoms;
+    File symptoms;
     File ReportMethods;
     File LocationPairs;
 
@@ -28,8 +27,7 @@ void main(string[] args)
     {
         JSON = File(args[1], "r");
         ids = File(args[2], "r");
-        Asymptoms = File(args[3], "r");
-        Osymptoms= File(args[4], "r");
+        symptoms = File(args[3], "r");
         ReportMethods =  File(args[5], "r");
         LocationPairs = File(args[6], "r");
     }
@@ -71,23 +69,13 @@ void main(string[] args)
 
     //TODO Put all this inside a function - Its horrible out here!
 
-    string AsymptomsList[];
-    AsymptomsList.length = 20;
+    string symptomsList[];
+    symptomsList.length = 20;
     lineCount = 0;
-    while(!Asymptoms.eof())
+    while(!symptoms.eof())
     {
-        string line = strip (Asymptoms.readln());
-        AsymptomsList[lineCount] = line;
-        lineCount++;
-    }
-
-    string OsymptomsList[];
-    OsymptomsList.length = 20;
-    lineCount = 0;
-    while(!Osymptoms.eof())
-    {
-        string line = strip (Osymptoms.readln());
-        OsymptomsList[lineCount] = line;
+        string line = strip (symptoms.readln());
+        symptomsList[lineCount] = line;
         lineCount++;
     }
 
@@ -111,11 +99,9 @@ void main(string[] args)
         lineCount++;
     }
 
-    writefln("The asymptoms list is %s long", AsymptomsList.length);
-    writefln("The osymptoms list is %s long", OsymptomsList.length);
+    writefln("The asymptoms list is %s long", symptomsList.length);
 
-    writeln(AsymptomsList);
-    writeln(OsymptomsList);
+    writeln(symptomsList);
 
 
     //How many symptoms does each patiant have maximum?
@@ -143,15 +129,9 @@ void main(string[] args)
         RealSymptoms.length = RealSymptomLim;
         for (int k = 0; i < uniform(RealSymptomStart, RealSymptomLim);i++)
         {
-            patiants[i]["Symptoms"].array ~= JSONValue(AsymptomsList[uniform(0,AsymptomsList.length)]);       //Pick a few real symptoms.
+            patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
 
-        string OtherSymptoms[];
-        OtherSymptoms.length = OtherSymptomLim;
-        for (int k = 0; i < uniform(OtherSymptomStart, OtherSymptomLim);i++)
-        {
-            patiants[i]["Symptoms"].array ~= JSONValue(OsymptomsList[uniform(0,OsymptomsList.length)]);       //Pick a few other symptoms.
-        }
 
         i++;
     }
