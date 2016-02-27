@@ -1,4 +1,6 @@
+(A) Add more SYMPTOMS! +RWPSymptomGenerator
 (A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
+(B) Make sure JSON is formatted correctly +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
 Impliment script in Python +RWPSymptomGenerator
