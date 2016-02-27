@@ -3,6 +3,7 @@ import std.stdio;
 import std.file;
 import std.string;
 import std.random;
+import std.conv;
 
 
 void main(string[] args)
@@ -36,10 +37,10 @@ void main(string[] args)
         JSON = File(args[1], "r");
         ids = File(args[2], "r");
         symptoms = File(args[3], "r");
-        realstart = args[4];
-        reallast = args[5];
-        fakestart =  args[6];
-        fakeend =  args[6];
+        realstart = to!int(args[4]);
+        realend = to!int(args[5]);
+        fakestart =  to!int(args[6]);
+        fakeend =  to!int(args[6]);
         ReportMethods =  File(args[5], "r");
         LocationPairs = File(args[6], "r");
     }
@@ -131,11 +132,16 @@ void main(string[] args)
         patiants[i].object["report_latitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
         patiants[i].object["report_longitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
 
-//        patiants[i].object["Symptoms"] = JSONValue([]);   //Get random report method
-
         string RealSymptoms[];
         RealSymptoms.length = RealSymptomLim;
-        for (int k = 0; i < uniform(RealSymptomStart, RealSymptomLim);i++)
+        for (int k = 0; i < uniform(RealSymptomStart, uniform(0,RealSymptomLim));i++)
+        {
+            patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
+        }
+
+        string FakeSymptoms[];
+        FakeSymptoms.length = symptomsList.length;
+        for (int k = 0; i < uniform(OtherSymptomStart, symptomsList.length);i++)
         {
             patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
         }
