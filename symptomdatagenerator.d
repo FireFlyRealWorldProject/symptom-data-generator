@@ -2,6 +2,7 @@ import std.json;
 import std.stdio;
 import std.file;
 import std.string;
+import std.random;
 
 
 void main(string[] args)
@@ -27,7 +28,7 @@ void main(string[] args)
     {
         JSON = File(args[1], "r");
         ids = File(args[2], "r");
-        Asymptoms = file(args[3], "r");
+        Asymptoms = File(args[3], "r");
         Osymptoms= File(args[4], "r");
         ReportMethods =  File(args[5], "r");
         LocationPairs = File(args[6], "r");
@@ -116,13 +117,43 @@ void main(string[] args)
     writeln(AsymptomsList);
     writeln(OsymptomsList);
 
+
+    //How many symptoms does each patiant have maximum?
+    int RealSymptomLim = 4;
+    int  OtherSymptomLim = 2;
+
+    int RealSymptomStart = 0;
+    int OtherSymptomStart = 10; //HOW MANY REAL ANTHRAX SYMPTOMS HAVE WE GOT?
+    //WHAT ABOUT THE DIFFERENT KINDS OF ANTHRAX?????
+    //XXX
+
+
+    int i = 0;
     while (!ids.eof())  //For every ID
     {
         patiants[i] = parseJSON(JSONStructureString); //New patiant
         patiants[i].object["patiant_id"] = JSONValue(ids.readln());
+        patiants[i].object["report_method"] = JSONValue(ReportMethodsList[uniform(0,ReportMethodsList.length)]);   //Get random report method
+        patiants[i].object["report_latitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
+        patiants[i].object["report_longitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
 
+//        patiants[i].object["Symptoms"] = JSONValue([]);   //Get random report method
 
+        string RealSymptoms[];
+        RealSymptoms.length = RealSymptomLim;
+        for (int k = 0; i < uniform(RealSymptomStart, RealSymptomLim);i++)
+        {
+            patiants[i]["Symptoms"].array ~= JSONValue(AsymptomsList[uniform(0,AsymptomsList.length)]);       //Pick a few real symptoms.
+        }
 
+        string OtherSymptoms[];
+        OtherSymptoms.length = OtherSymptomLim;
+        for (int k = 0; i < uniform(OtherSymptomStart, OtherSymptomLim);i++)
+        {
+            patiants[i]["Symptoms"].array ~= JSONValue(OsymptomsList[uniform(0,OsymptomsList.length)]);       //Pick a few other symptoms.
+        }
+
+        i++;
     }
         
 

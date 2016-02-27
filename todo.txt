@@ -1,9 +1,8 @@
+(A) Add command line arguments for how many real and fake symptoms there are.
 (A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
 (A) Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
 (A) Remove using two seperate files for real Anthrax symptoms and fake ones, we can use one file and ranges. +RWPSymptomGenerator
-(A) Add command line arguments for how many real and fake symptoms there are.
 (A) Write finished JSON +RWPSymptomGenerator
-(A) Add the implimentation for the for loop actually generating the JSON patiant profiles +RWPSymptomGenerator
 (B) Add the Anthrax Symptoms +RWPSymptomGenerator
 (B) Add the JSON structure +RWPSymptomGenerator
 (B) Add the other symptoms +RWPSymptomGenerator
@@ -19,3 +18,4 @@ Put file reading methods into their own function. +RWPSymptomGenerator
 x 2016-02-26 (A) Add reading in the symptoms and IDs from the files
 x 2016-02-26 (A) Add reading locations from files
 x 2016-02-26 (A) Add reading methods of reporting from files
+x 2016-02-27 (A) Add the implimentation for the for loop actually generating the JSON patiant profiles +RWPSymptomGenerator
