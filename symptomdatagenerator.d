@@ -23,11 +23,23 @@ void main(string[] args)
     File ReportMethods;
     File LocationPairs;
 
+
+    int realstart = 0;
+    int realend = 0;
+    int fakeend = 0;
+    int fakestart = 0;
+
+
+
     if (args.length >= 8)       //Open the files
     {
         JSON = File(args[1], "r");
         ids = File(args[2], "r");
         symptoms = File(args[3], "r");
+        realstart = args[4];
+        reallast = args[5];
+        fakestart =  args[6];
+        fakeend =  args[6];
         ReportMethods =  File(args[5], "r");
         LocationPairs = File(args[6], "r");
     }
@@ -35,10 +47,6 @@ void main(string[] args)
     {
         return ;
     }
-
-
-
-
 
     string JSONStructureString = strip(JSON.readln());       //Read in the JSON structure from file
     string JSONStructureFields[10];
@@ -108,8 +116,8 @@ void main(string[] args)
     int RealSymptomLim = 4;
     int  OtherSymptomLim = 2;
 
-    int RealSymptomStart = 0;
-    int OtherSymptomStart = 10; //HOW MANY REAL ANTHRAX SYMPTOMS HAVE WE GOT?
+    int RealSymptomStart = realstart;
+    int OtherSymptomStart = realend; //HOW MANY REAL ANTHRAX SYMPTOMS HAVE WE GOT?
     //WHAT ABOUT THE DIFFERENT KINDS OF ANTHRAX?????
     //XXX
 

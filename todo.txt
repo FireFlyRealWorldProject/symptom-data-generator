@@ -1,4 +1,4 @@
-(A) Add command line arguments for how many real and fake symptoms there are.
+(A) Make sure that we sometimes pick no fake symptoms +RWPSymptomGenerator
 (A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
 (A) Write finished JSON +RWPSymptomGenerator
 (B) Add the Anthrax Symptoms +RWPSymptomGenerator
@@ -7,15 +7,16 @@
 (B) Add the patiant IDs +RWPSymptomGenerator
 (C) Impliment ability to specify how many patiants to generate. +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
-Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
 Impliment script in Python +RWPSymptomGenerator
 Make sure that this CAN generate data compatible with Abena's symptom ranking system +RWPSymptomGenerator
 Make sure that this generates data compatible with Oliver's patiant data +RWPSymptomGenerator
 Make the amount of symptoms the script can read in dynamic +RWPSymptomGenerator
 Put file reading methods into their own function. +RWPSymptomGenerator
+Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
 x 2016-02-26 (A) Add reading in the symptoms and IDs from the files
 x 2016-02-26 (A) Add reading locations from files
 x 2016-02-26 (A) Add reading methods of reporting from files
+x 2016-02-27 (A) Add command line arguments for how many real and fake symptoms there are.
 x 2016-02-27 (A) Add the implimentation for the for loop actually generating the JSON patiant profiles +RWPSymptomGenerator
 x 2016-02-27 (A) Remove using two seperate files for real Anthrax symptoms and fake ones, we can use one file and ranges. +RWPSymptomGenerator
