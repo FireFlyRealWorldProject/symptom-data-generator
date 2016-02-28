@@ -74,7 +74,7 @@ void main(string[] args)
         return ;
     }
 
-    string JSONStructureString = "{    \"patiant_id\": \"\", \"report_method\":\"\", \"report_location\": [], \"\",\"Symptoms\":[] }";       //Read in the JSON structure from file
+    string JSONStructureString = "{    \"patiant_id\": \"\", \"report_method\":\"\", \"report_location\":[],\"Symptoms\":[] }";       //Read in the JSON structure from file
     string JSONStructureFields[10];
 
     int lineCount = 1;
@@ -255,8 +255,9 @@ void main(string[] args)
 
     foreach(int p, JSONValue patiant; patiants)
     {
-        string patiantJSON = patiant.toString();
+        string patiantJSON = patiant.toPrettyString();
         append("Patiants.json", patiantJSON);
+        append("Patiants.json", "\n");
         writeln(patiantJSON);
 
     }
