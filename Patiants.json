@@ -1,0 +1,81 @@
+{
+    "report_method": "NHS111",
+    "report_location": "234567633,34211245",
+    "patiant_id": "0001",
+    "Symptoms": [
+        "Kinky",
+        "Cold",
+        "e",
+        "s",
+        "g"
+    ]
+}
+{
+    "report_method": "GP",
+    "report_location": "545623,233",
+    "patiant_id": "0002",
+    "Symptoms": [
+        "cuteness",
+        "t",
+        "e",
+        ""
+    ]
+}
+{
+    "report_method": "GP",
+    "report_location": "2000,100",
+    "patiant_id": "0003",
+    "Symptoms": [
+        "e",
+        "",
+        "v",
+        "t"
+    ]
+}
+{
+    "report_method": "NHS111",
+    "report_location": "21,233",
+    "patiant_id": "0004",
+    "Symptoms": [
+        "kawaiiness",
+        "e",
+        "r",
+        "j",
+        "s"
+    ]
+}
+{
+    "report_method": "NHS111",
+    "report_location": "234567633,34211245",
+    "patiant_id": "0005",
+    "Symptoms": [
+        "lolol",
+        "Cold",
+        "Kinky",
+        "s",
+        "j",
+        "",
+        "t"
+    ]
+}
+{
+    "report_method": "GP",
+    "report_location": "2000,100",
+    "patiant_id": "0006",
+    "Symptoms": [
+        "Headache",
+        "v",
+        "",
+        "e",
+        "r"
+    ]
+}
+{
+    "report_method": "GP",
+    "report_location": "2000,100",
+    "patiant_id": "",
+    "Symptoms": [
+        "lolol",
+        "t"
+    ]
+}
