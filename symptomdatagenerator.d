@@ -74,7 +74,7 @@ void main(string[] args)
         return ;
     }
 
-    string JSONStructureString = "{    \"patiant_id\": \"\", \"report_method\":\"\", \"report_latitude\": \"\",\"report_longitude\": \"\",\"Symptoms\":[] }";       //Read in the JSON structure from file
+    string JSONStructureString = "{    \"patiant_id\": \"\", \"report_method\":\"\", \"report_location\": [], \"\",\"Symptoms\":[] }";       //Read in the JSON structure from file
     string JSONStructureFields[10];
 
     int lineCount = 1;
@@ -159,8 +159,7 @@ void main(string[] args)
         patiants[i] = parseJSON(JSONStructureString); //New patiant
         patiants[i].object["patiant_id"] = JSONValue(ids.readln());
         patiants[i].object["report_method"] = JSONValue(ReportMethodsList[uniform(0,ReportMethodsList.length)]);   //Get random report method
-        patiants[i].object["report_latitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
-        patiants[i].object["report_longitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
+        patiants[i].object["report_location"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
 
         writeln(patiants[i].object["report_method"].toString());
 
