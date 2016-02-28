@@ -221,20 +221,33 @@ void main(string[] args)
 
         }
 
+        again = false;
         string FakeSymptoms[];
         FakeSymptoms.length = symptomsList.length;
         for (int f = 0; f < noFakeSimps; f++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
             writeln("Other symptomstart: ",OtherSymptomStart);
             symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
-            //while (isIn(choosenFakeSymptomsList, symptom))
-            //{
-                symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
-            //}
-            writeln("choosen!", chompPrefix(symptom, to!string(type)));
-            patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
-            choosenFakeSymptomsList ~= symptom;
+            symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
 
+            for(int tick = 0; tick < choosenFakeSymptomsList.length;tick++)
+            {
+                writefln("Checking %s against %s", choosenFakeSymptomsList[tick], symptom);
+                if (choosenFakeSymptomsList[tick] ==  symptom)
+                {   
+                    symptom = " ";
+                    f--;
+                    again = true;
+                    break;
+                }
+                again = false;
+            }
+            if (again != true)
+            {
+                patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
+                choosenFakeSymptomsList ~= symptom;
+                writeln(choosenFakeSymptomsList);
+            }
         }
 
         i++;
