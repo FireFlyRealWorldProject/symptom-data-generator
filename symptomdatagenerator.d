@@ -158,9 +158,9 @@ void main(string[] args)
         { break; }
 
         patiants[i] = parseJSON(JSONStructureString); //New patiant
-        patiants[i].object["patiant_id"] = JSONValue(ids.readln());
-        patiants[i].object["report_method"] = JSONValue(ReportMethodsList[uniform(0,ReportMethodsList.length-1)]);   //Get random report method
-        patiants[i].object["report_location"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length-1)]);   //Get random report method
+        patiants[i].object["patiant_id"] = JSONValue(strip(ids.readln()));
+        patiants[i].object["report_method"] = JSONValue(strip(ReportMethodsList[uniform(0,ReportMethodsList.length-1)]));   //Get random report method
+        patiants[i].object["report_location"] = JSONValue(strip(LocationPairsList[uniform(0,LocationPairsList.length-1)]));   //Get random report method
 
         writeln(patiants[i].object["report_method"].toString());
 
@@ -260,7 +260,6 @@ void main(string[] args)
         append("Patiants.json", patiantJSON);
         append("Patiants.json", "\n");
         writeln(patiantJSON);
-
     }
 
         
