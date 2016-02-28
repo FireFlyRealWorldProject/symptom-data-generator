@@ -183,6 +183,7 @@ void main(string[] args)
         writeln(type);
 
         string symptom = "";
+        bool again = false;
 
 
         if (noRealSimps > 0)
@@ -194,18 +195,26 @@ void main(string[] args)
                 {
                     symptom = symptomsList[uniform(0,realend)];
 
-                    foreach(int tick, string str; choosenSymptomsList)
-                    {
-                        if (isIn(str, symptom))
-                        {   
-                            symptom = " ";
-                            break;
-                        }
-                    }
                 }
 
-                patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
-                choosenSymptomsList ~= symptom;
+                for(int tick = 0; tick < choosenSymptomsList.length;tick++)
+                {
+                    writefln("Checking %s against %s", choosenSymptomsList[tick], symptom);
+                    if (choosenSymptomsList[tick] ==  symptom)
+                    {   
+                        symptom = " ";
+                        k--;
+                        again = true;
+                        break;
+                    }
+                    again = false;
+                }
+                if (again != true)
+                {
+                    patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
+                    choosenSymptomsList ~= symptom;
+                    writeln(choosenSymptomsList);
+                }
             }
 
 
