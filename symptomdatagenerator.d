@@ -135,6 +135,8 @@ void main(string[] args)
     //WHAT ABOUT THE DIFFERENT KINDS OF ANTHRAX?????
     //XXX
 
+    string[4] types = ["@","%","$","*"];
+
 
     int i = 0;
     while (!ids.eof())  //For every ID
@@ -151,20 +153,39 @@ void main(string[] args)
         string RealSymptoms[];
         RealSymptoms.length = RealSymptomLim;
 
-
         int noRealSimps = uniform(0, RealSymptomLim);
         int noFakeSimps = uniform(0, OtherSymptomLim);
 
-        for (int k = 0; k < noRealSimps;k++)   //Get real symptoms 0 to max. Will sometimes pick 0
+        string type = types[uniform (0, types.length)]; //pick a type of anthrax for this patiant
+        string[] choosenSymptomsList;       //The symptoms we've got already, no duplicates!
+        string[] choosenFakeSymptomsList;
+        bool alreadyGotIt = false;
+
+        writefln("Choose: %s", type);
+
+        string symptom;
+
+        for (int k = 0; k < noRealSimps; k++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
-            patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
+            //make sure that the symptom we pick, conforms with the type we picked earlier.
+            symptom = symptomsList[uniform(0,RealSymptomLim)];
+            writeln("okay?");
+            while (indexOf(symptom,type) == -1)     //While the first char is not one of the type chars
+            {
+                symptom = symptomsList[uniform(0,RealSymptomLim)];
+            }
+            writeln("choosen!", removechars(symptom, type));
+            patiants[i]["Symptoms"].array ~= JSONValue(removechars(symptom, type));       //Pick a few real symptoms.
         }
 
         string FakeSymptoms[];
         FakeSymptoms.length = symptomsList.length;
-        for (int k = 0; k < noFakeSimps;k++)
+        for (int f = 0; f < noFakeSimps; f++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
-            patiants[i]["Symptoms"].array ~= JSONValue(symptomsList[uniform(0,symptomsList.length)]);       //Pick a few real symptoms.
+            symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
+            writeln("choosen!", removechars(symptom, type));
+            patiants[i]["Symptoms"].array ~= JSONValue(removechars(symptom, type));       //Pick a few real symptoms.
+
         }
 
         i++;
@@ -173,7 +194,10 @@ void main(string[] args)
 
     foreach(int p, JSONValue patiant; patiants)
     {
-        append("Patiants.json", patiant.toString());
+        string patiantJSON = patiant.toString();
+        append("Patiants.json", patiantJSON);
+        writeln(patiantJSON);
+
     }
 
         
