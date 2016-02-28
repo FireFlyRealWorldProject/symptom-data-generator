@@ -187,42 +187,28 @@ void main(string[] args)
 
         if (noRealSimps > 0)
         {
-                writeln("NO REAL SIMPS1");
-                writeln(noRealSimps);
             for (int k = 0; k < noRealSimps; k++)   //Get real symptoms 0 to max. Will sometimes pick 0
             {
                 //make sure that the symptom we pick, conforms with the type we picked earlier.
                 while (indexOf(symptom,type) < 0)     //While the first char is not one of the type chars
                 {
-                    writeln("here2");
-
                     symptom = symptomsList[uniform(0,realend)];
-                    writeln(RealSymptomLim);
-                    writeln(symptom);
-                    writeln(type);
 
-//                    foreach(int tick, string str; choosenSymptomsList)
-//                    {
-//                        if (isIn(str, symptom))
-//                        {   
-//                            symptom = " ";
-//                            break;
-//                        }
-//                    }
+                    foreach(int tick, string str; choosenSymptomsList)
+                    {
+                        if (isIn(str, symptom))
+                        {   
+                            symptom = " ";
+                            break;
+                        }
+                    }
                 }
 
                 patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
-            writeln(choosenSymptomsList);
                 choosenSymptomsList ~= symptom;
-            writeln(choosenSymptomsList);
-                writeln(k);
-                writeln("NO REAL SIMPS");
-                writeln(noRealSimps);
             }
 
 
-            writeln(choosenSymptomsList);
-            writeln("here!");
 
         }
 
