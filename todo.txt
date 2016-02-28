@@ -7,7 +7,6 @@ Add decent comments +RWPSymptomGenerator
 Impliment script in Python +RWPSymptomGenerator
 Make sure that this CAN generate data compatible with Abena's symptom ranking system +RWPSymptomGenerator
 Make sure that this generates data compatible with Oliver's patiant data +RWPSymptomGenerator
-Make the amount of symptoms the script can read in dynamic +RWPSymptomGenerator
 Put file reading methods into their own function. +RWPSymptomGenerator
 x 2016-02-26 (A) Add reading in the symptoms and IDs from the files
 x 2016-02-26 (A) Add reading locations from files
@@ -26,3 +25,4 @@ x 2016-02-27 (B) Add the patiant IDs +RWPSymptomGenerator
 x 2016-02-27 (C) Impliment ability to specify how many patiants to generate. +RWPSymptomGenerator
 x 2016-02-27 Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
 x 2016-02-28 (A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
+x 2016-02-28 Make the amount of symptoms the script can read in dynamic +RWPSymptomGenerator

@@ -6,6 +6,18 @@ import std.random;
 import std.conv;
 
 
+
+bool isIn(string[] array, string str)
+{
+    foreach( int i, string check; array)
+    {
+        if (check == str)
+        {   return true;    }
+    }
+    return false;
+}
+
+
 void main(string[] args)
 {
 
@@ -91,33 +103,30 @@ void main(string[] args)
 
     //TODO Put all this inside a function - Its horrible out here!
 
-    string symptomsList[];
-    symptomsList.length = 20;
+    string[] symptomsList;
     lineCount = 0;
     while(!symptoms.eof())
     {
         string line = strip (symptoms.readln());
-        symptomsList[lineCount] = line;
+        symptomsList ~= line;
         lineCount++;
     }
 
-    string ReportMethodsList[];
-    ReportMethodsList.length = 20;
+    string[] ReportMethodsList;
     lineCount = 0;
     while(!ReportMethods.eof())
     {
         string line = strip (ReportMethods.readln());
-        ReportMethodsList[lineCount] = line;
+        ReportMethodsList ~= line;
         lineCount++;
     }
 
-    string LocationPairsList[];
-    LocationPairsList.length = 20;
+    string[] LocationPairsList;
     lineCount = 0;
     while(!LocationPairs.eof())
     {
         string line = strip (LocationPairs.readln());
-        LocationPairsList[lineCount] = line;
+        LocationPairsList ~= line;
         lineCount++;
     }
 
@@ -128,14 +137,14 @@ void main(string[] args)
 
     //How many symptoms does each patiant have maximum?
     int RealSymptomLim = 4;
-    int  OtherSymptomLim = 2;
+    int  OtherSymptomLim = 4;
 
     int RealSymptomStart = realstart;
-    int OtherSymptomStart = realend; //HOW MANY REAL ANTHRAX SYMPTOMS HAVE WE GOT?
+    int OtherSymptomStart = realend+1; //HOW MANY REAL ANTHRAX SYMPTOMS HAVE WE GOT?
     //WHAT ABOUT THE DIFFERENT KINDS OF ANTHRAX?????
     //XXX
 
-    string[4] types = ["@","%","$","*"];
+    char[4] types = ['@','%','$','*'];
 
 
     int i = 0;
@@ -150,16 +159,22 @@ void main(string[] args)
         patiants[i].object["report_latitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
         patiants[i].object["report_longitude"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length)]);   //Get random report method
 
+        writeln(patiants[i].object["report_method"].toString());
+
         string RealSymptoms[];
         RealSymptoms.length = RealSymptomLim;
 
         int noRealSimps = uniform(0, RealSymptomLim);
-        int noFakeSimps = uniform(0, OtherSymptomLim);
+        int noFakeSimps = uniform(1, OtherSymptomLim);
 
-        string type = types[uniform (0, types.length)]; //pick a type of anthrax for this patiant
+        writeln("real symps:");
+        writeln(noFakeSimps);
+        writeln("fake symps:");
+        writeln(noFakeSimps);
+
+        char type = types[uniform (0, types.length)]; //pick a type of anthrax for this patiant
         string[] choosenSymptomsList;       //The symptoms we've got already, no duplicates!
         string[] choosenFakeSymptomsList;
-        bool alreadyGotIt = false;
 
         writefln("Choose: %s", type);
 
@@ -168,23 +183,35 @@ void main(string[] args)
         for (int k = 0; k < noRealSimps; k++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
             //make sure that the symptom we pick, conforms with the type we picked earlier.
-            symptom = symptomsList[uniform(0,RealSymptomLim)];
-            writeln("okay?");
+            symptom = "";
             while (indexOf(symptom,type) == -1)     //While the first char is not one of the type chars
             {
                 symptom = symptomsList[uniform(0,RealSymptomLim)];
+
+                if (isIn(choosenSymptomsList, symptom))
+                {   symptom = " ";  }
+                else
+                {   break;  }
+
             }
-            writeln("choosen!", removechars(symptom, type));
-            patiants[i]["Symptoms"].array ~= JSONValue(removechars(symptom, type));       //Pick a few real symptoms.
+            writeln("choosen!", chompPrefix(symptom, to!string(type)));
+            patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
+            choosenSymptomsList ~= symptom;
         }
 
         string FakeSymptoms[];
         FakeSymptoms.length = symptomsList.length;
         for (int f = 0; f < noFakeSimps; f++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
+            writeln("Other symptomstart: ",OtherSymptomStart);
             symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
-            writeln("choosen!", removechars(symptom, type));
-            patiants[i]["Symptoms"].array ~= JSONValue(removechars(symptom, type));       //Pick a few real symptoms.
+            while (isIn(choosenFakeSymptomsList, symptom))
+            {
+                symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
+            }
+            writeln("choosen!", chompPrefix(symptom, to!string(type)));
+            patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
+            choosenFakeSymptomsList ~= symptom;
 
         }
 
