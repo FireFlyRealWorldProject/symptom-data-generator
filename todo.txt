@@ -1,5 +1,6 @@
 (A) 2016-02-28 Make sure we don't get duplicate symtoms +RWPSymptomGenerator 
 (A) Add more SYMPTOMS! +RWPSymptomGenerator
+(B) 2016-02-28 Add support to use location pairs instead of just picking a random location from the file +RWPSymptomGenerator 
 (B) Make sure JSON is formatted correctly +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
