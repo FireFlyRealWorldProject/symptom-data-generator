@@ -1,5 +1,4 @@
 (A) Add more SYMPTOMS! +RWPSymptomGenerator
-(A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
 (B) Make sure JSON is formatted correctly +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
@@ -24,3 +23,4 @@ x 2016-02-27 (B) Add the other symptoms +RWPSymptomGenerator
 x 2016-02-27 (B) Add the patiant IDs +RWPSymptomGenerator
 x 2016-02-27 (C) Impliment ability to specify how many patiants to generate. +RWPSymptomGenerator
 x 2016-02-27 Remove using a JSON structure file. Since the structure should always be the same at this point. +RWPSymptomGenerator
+x 2016-02-28 (A) Figure out how to make sure we pick real symptoms from the same group of Anthrax. +RWPSymptomGenerator
