@@ -4,6 +4,7 @@ import std.file;
 import std.string;
 import std.random;
 import std.conv;
+import std.format;
 
 
 
@@ -243,8 +244,9 @@ void main(string[] args)
                 again = false;
             }
             if (again != true)
-            {
-                patiants[i]["Symptoms"].array ~= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
+            { 
+                string symptomObject = format("{\"name\": \"%s\"},", chompPrefix(symptom, to!string(type)));
+                patiants[i]["Symptoms"].array ~= parseJSON(symptomObject);       //Pick a few real symptoms.
                 choosenFakeSymptomsList ~= symptom;
                 writeln(choosenFakeSymptomsList);
             }
@@ -259,7 +261,7 @@ void main(string[] args)
         string patiantJSON = patiant.toPrettyString();
         append("Patiants.json", patiantJSON);
         append("Patiants.json", "\n");
-        writeln(patiantJSON);
+//        writeln(patiantJSON);
     }
 
         
