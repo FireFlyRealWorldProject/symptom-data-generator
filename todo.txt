@@ -1,4 +1,3 @@
-(A) Make locations JSON objects instead of comma sep paits.+RWPSymptomGenerator
 (A) Add more SYMPTOMS! +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
@@ -27,3 +26,4 @@ x 2016-02-28 (A) Figure out how to make sure we pick real symptoms from the same
 x 2016-02-28 (B) 2016-02-28 Add support to use location pairs instead of just picking a random location from the file +RWPSymptomGenerator 
 x 2016-02-28 (B) Make sure JSON is formatted correctly +RWPSymptomGenerator
 x 2016-02-28 Make the amount of symptoms the script can read in dynamic +RWPSymptomGenerator
+x 2016-03-02 (A) Make locations JSON objects instead of comma sep paits.+RWPSymptomGenerator

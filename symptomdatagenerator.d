@@ -126,12 +126,12 @@ void main(string[] args)
     }
     writeln(ReportMethodsList);
 
-    string[] LocationPairsList;
+    JSONValue[] LocationPairsList;
     lineCount = 0;
     while(!LocationPairs.eof())
     {
         string line = strip (LocationPairs.readln());
-        LocationPairsList ~= line;
+        LocationPairsList ~= parseJSON(line);
         lineCount++;
     }
 
@@ -161,7 +161,7 @@ void main(string[] args)
         patiants[i] = parseJSON(JSONStructureString); //New patiant
         patiants[i].object["patiant_id"] = JSONValue(strip(ids.readln()));
         patiants[i].object["report_method"] = JSONValue(strip(ReportMethodsList[uniform(0,ReportMethodsList.length-1)]));   //Get random report method
-        patiants[i].object["report_location"] = JSONValue(strip(LocationPairsList[uniform(0,LocationPairsList.length-1)]));   //Get random report method
+        patiants[i].object["report_location"] = JSONValue(LocationPairsList[uniform(0,LocationPairsList.length-1)]);   //Get random report method
 
         writeln(patiants[i].object["report_method"].toString());
 
