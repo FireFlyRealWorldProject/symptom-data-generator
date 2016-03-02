@@ -1,3 +1,4 @@
+(A) Make locations JSON objects instead of comma sep paits.+RWPSymptomGenerator
 (A) Add more SYMPTOMS! +RWPSymptomGenerator
 (C) Impliment half decent handling for: not enough args, to many args, file not exist +RWPSymptomGenerator
 Add decent comments +RWPSymptomGenerator
