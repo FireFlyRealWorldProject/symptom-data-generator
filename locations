@@ -1,4 +1,4 @@
-{"type":"Point", coordinates: [2000,100]},
+{"type":"Point", "coordinates": [2000,100]},
 {"type":"Point", "coordinates": [234878,25984]},
 {"type":"Point", "coordinates": [238349,2485]},
 {"type":"Point", "coordinates": [239349,2383459]},

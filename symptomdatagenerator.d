@@ -49,17 +49,17 @@ void main(string[] args)
 
 
 
-    if (args.length >= 11)       //Open the files
+    if (args.length >= 9)       //Open the files
     {
-        ids = File(args[2], "r");       //This is now the patiants loaded from sample people
-        symptoms = File(args[3], "r");
-        realstart = to!int(args[4]);
-        realend = to!int(args[5]);
-        fakestart =  to!int(args[6]);
-        fakeend =  to!int(args[7]);
-        ReportMethods =  File(args[8], "r");
-        LocationPairs = File(args[9], "r");
-        numPatiants = to!int(args[10]);
+        ids = File(args[1], "r");       //This is now the patiants loaded from sample people
+        symptoms = File(args[2], "r");
+        realstart = to!int(args[3]);
+        realend = to!int(args[4]);
+        fakestart =  to!int(args[5]);
+        fakeend =  to!int(args[6]);
+        ReportMethods =  File(args[7], "r");
+        LocationPairs = File(args[8], "r");
+        numPatiants = to!int(args[9]);
 
     }
     else if (args.length == 2)
@@ -77,6 +77,7 @@ void main(string[] args)
     }
 
     int lineCount = 1;
+
 
 
 //    JSONValue j = parseJSON(JSONStructureString);
@@ -140,6 +141,7 @@ void main(string[] args)
 
 
     int i = 0;
+    writeln(numPatiants);
     while (i < numPatiants)  //For every ID
     {
         if (i >= numPatiants)   //Check because EOF doesnt happen until i is already out of range
@@ -197,7 +199,6 @@ void main(string[] args)
                 }
                 if (again != true)
                 {
-                    writeln(chompPrefix(symptom, to!string(type)));
                     patiants.array[i].object["Symptoms"]= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
                     choosenSymptomsList ~= symptom;
                     writeln(choosenSymptomsList);
@@ -214,7 +215,6 @@ void main(string[] args)
         //patiants.array[i].object["Symptoms"] = JSONValue([]);
         for (int f = 0; f < noFakeSimps; f++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
-            writeln("Other symptomstart: ",OtherSymptomStart);
             symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
             symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
 
