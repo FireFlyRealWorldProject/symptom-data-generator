@@ -22,6 +22,54 @@ bool isIn(string check, string str)
 }
 
 
+string pickSymptom(string sympList[],string type, int end, int start)  //Pick a symptom from the list
+{
+
+    string symptom = "";
+
+    if (type == "")
+    {
+        symptom = sympList[uniform(start,end)];   //If we're doing non-typed symptoms
+        return symptom;
+    }
+
+
+    symptom = sympList[uniform(0,end)];
+    while (indexOf(symptom,type) < 0)     //While the first char is not one of the type chars
+    {
+        symptom = sympList[uniform(0,end)];
+
+    }
+
+    return symptom;
+
+}
+
+bool checkChoosen(string choosenList[], string symptom) //Check if the picked symptom is already been picked
+{
+    bool isIn = false;
+
+    //XXX For some reason this gets a range violation because i is always gets to one more than it really should for some reason...
+    writeln("Length");
+    writeln(choosenList.length);
+    if (choosenList.length <= 1)
+    {   return false;   }
+
+    foreach(int i, string choosen; choosenList)
+    {
+        if (choosen == symptom)
+        {   isIn = true; break;  }
+    }
+
+    return isIn;
+
+
+}
+
+
+
+
+
 void main(string[] args)
 {
 
@@ -83,9 +131,12 @@ void main(string[] args)
 //    JSONValue j = parseJSON(JSONStructureString);
     writefln("Doing %s Patiants", args[]);
 
+    writeln("here?");
     JSONValue patiants = parseJSON(ids.readln());    //List of patiants
+    writeln("Not here!");
 
 
+    writeln("READ in patiant");
 
     //Read in all the anthrax symptoms
 
@@ -123,6 +174,8 @@ void main(string[] args)
         lineCount++;
     }
 
+    writeln("read in some location pairs");
+
     writefln("The asymptoms list is %s long", symptomsList.length);
 
     writeln(symptomsList);
@@ -137,9 +190,10 @@ void main(string[] args)
     //WHAT ABOUT THE DIFFERENT KINDS OF ANTHRAX?????
     //XXX
 
-    string[4] types = ["@","%","$","*"];
+    string[2] types = ["%","$"];
 
 
+    writeln("done processing shit");
     int i = 0;
     writeln(numPatiants);
     while (i < numPatiants)  //For every ID
@@ -174,69 +228,63 @@ void main(string[] args)
         bool again = false;
 
 
+        //XXX TODO Add the picking of symptoms to a function, so we can call it over and over again!
+
         if (noRealSimps > 0)
         {
             for (int k = 0; k < noRealSimps; k++)   //Get real symptoms 0 to max. Will sometimes pick 0
             {
+
                 //make sure that the symptom we pick, conforms with the type we picked earlier.
-                while (indexOf(symptom,type) < 0)     //While the first char is not one of the type chars
-                {
-                    symptom = symptomsList[uniform(0,realend)];
 
+                symptom = pickSymptom(symptomsList,type,realend,0 );   //Pick a symptoim
+                while(checkChoosen(choosenSymptomsList, symptom) == true)   //Check it isnt already picked
+                {   
+                    symptom = pickSymptom(symptomsList,type,realend, 0);   //If it is, pick another one and check again
                 }
 
-                for(int tick = 0; tick < choosenSymptomsList.length;tick++)
+                //When we get here, we should have picked a symptom
+
+
+                writeln("We also attempt to add to an array here");
+                choosenSymptomsList ~= symptom;
+                writeln("choosen list");
+                writeln(choosenSymptomsList);
+                string symptomObject = format("{\"name\": \"%s\"},", chompPrefix(symptom, to!string(type)));
+                if (k == 0)
                 {
-                    writefln("Checking %s against %s", choosenSymptomsList[tick], symptom);
-                    if (choosenSymptomsList[tick] ==  symptom)
-                    {   
-                        symptom = " ";
-                        k--;
-                        again = true;
-                        break;
-                    }
-                    again = false;
+                    patiants.array[i].object["Symptoms"] = JSONValue([parseJSON(symptomObject)]);       //Pick a few real symptoms.
                 }
-                if (again != true)
+                else
                 {
-                    patiants.array[i].object["Symptoms"]= JSONValue(chompPrefix(symptom, to!string(type)));       //Pick a few real symptoms.
-                    choosenSymptomsList ~= symptom;
-                    writeln(choosenSymptomsList);
+                   patiants.array[i].object["Symptoms"].array ~= parseJSON(symptomObject);         //Pick a few real symptoms.
                 }
             }
-
-
 
         }
 
-        again = false;
         string FakeSymptoms[];
         FakeSymptoms.length = symptomsList.length;
-        //patiants.array[i].object["Symptoms"] = JSONValue([]);
         for (int f = 0; f < noFakeSimps; f++)   //Get real symptoms 0 to max. Will sometimes pick 0
         {
-            symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
-            symptom = symptomsList[uniform(OtherSymptomStart,symptomsList.length)];
+            writeln("Choosing fake symptoms");
+            symptom = pickSymptom(symptomsList, "", fakeend, fakestart);
 
-            for(int tick = 0; tick < choosenFakeSymptomsList.length;tick++)
+            while(checkChoosen(choosenFakeSymptomsList, symptom) == true)
             {
-                writefln("Checking %s against %s", choosenFakeSymptomsList[tick], symptom);
-                if (choosenFakeSymptomsList[tick] ==  symptom)
-                {   
-                    symptom = " ";
-                    f--;
-                    again = true;
-                    break;
-                }
-                again = false;
+                symptom = pickSymptom(symptomsList, "", fakeend, fakestart);
             }
-            if (again != true)
-            { 
-                string symptomObject = format("{\"name\": \"%s\"},", chompPrefix(symptom, to!string(type)));
-                patiants.array[i].object["Symptoms"] = parseJSON(symptomObject);       //Pick a few real symptoms.
-                choosenFakeSymptomsList ~= symptom;
-                writeln(choosenFakeSymptomsList);
+
+            string symptomObject = format("{\"name\": \"%s\"},", chompPrefix(symptom, to!string(type)));
+            if (f == 0 && noRealSimps == 0)
+            {
+                patiants.array[i].object["Symptoms"] = JSONValue([parseJSON(symptomObject)]);       //Pick a few real symptoms.
             }
+            else
+            {
+                patiants.array[i].object["Symptoms"].array ~= parseJSON(symptomObject);         //Pick a few real symptoms.
+            }
+            choosenFakeSymptomsList ~= symptom;
         }
 
         i++;
