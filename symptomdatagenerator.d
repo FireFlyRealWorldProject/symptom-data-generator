@@ -182,7 +182,7 @@ void main(string[] args)
 
 
     //How many symptoms does each patiant have maximum?
-    int RealSymptomLim = 4;
+    int RealSymptomLim = 6;
     int  OtherSymptomLim = 5;
 
     int RealSymptomStart = realstart;

@@ -1,23 +1,30 @@
+%Headache
+%Sore Throat
+%Fever
+%Flushing
+%Red Eyes
+%Stomach Pains
 %Nausea
 %Vomiting
-%Headache
-%Abdominal Pain
-%Loss of Appetite
-%Fever
+%swelling
+%Painful Swollowing
+%Diarrhea
+%Fainting
+%Bloody Vomiting
 %Bloody Diarrhea
-%Swollen Neck
-$Sore Throat
-$Mild Fever
-$Fatigue
-$Muscle Aches
-$Chest Discomfort
+$Fever
+$Cough
+$Headache
 $Nausea
-$Coughin up blood
-$Painful Swollowing
-$High Fever
-$Trouble Breating
-$Shock
-$Meningitis
+$Vomiting
+$Sweats
+$Stomach Pains
+$Body Aches
+$Confusion
+$Dizziness
+$Extreme Tiredness
+$Chest Discomfort
+$Shortness of Breath
 Fever
 Loss of Appitite
 Stomach Pains
